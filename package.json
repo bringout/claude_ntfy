@@ -5,12 +5,15 @@
   "module": "src/index.ts",
   "type": "module",
   "bin": {
-    "claude-ntfy": "./dist/index.js"
+    "claude-ntfy": "./dist/index.js",
+    "claude-ntfy-tui": "./dist/tui.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "bun run src/index.ts",
+    "start:tui": "bun run src/tui.tsx",
     "dev": "bun run --watch src/index.ts",
+    "dev:tui": "bun run --watch src/tui.tsx",
     "test": "./test.sh"
   },
   "keywords": ["tui", "ntfy", "notifications", "cli"],
