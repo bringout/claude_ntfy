@@ -4,7 +4,6 @@
     "": {
       "name": "claude-ntfy",
       "dependencies": {
-        "@types/react": "^19.1.10",
         "axios": "^1.11.0",
         "ink": "^6.2.1",
         "react": "^19.1.1",

@@ -69,3 +69,11 @@ That token is needed in github actions for publishing project. Setup github acti
 
 - API for ntfy: https://docs.ntfy.sh
 
+Send message example:
+```
+fetch('https://ntfy.sh/mytopic', {
+    method: 'POST', // PUT works too
+    body: 'Backup successful 😀'
+})
+```
+
