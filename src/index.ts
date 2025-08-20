@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 
-import { loadSettings, saveSettings, Settings } from './utils/settings';
+import { loadSettings, saveSettings } from './utils/settings';
+import type { Settings } from './utils/settings';
 import { NtfyClient } from './utils/ntfy';
 
 async function main() {

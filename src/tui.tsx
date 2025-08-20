@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { render, Text, Box, useInput } from 'ink';
-import { loadSettings, Settings } from './utils/settings';
+import { loadSettings } from './utils/settings';
+import type { Settings } from './utils/settings';
 import { NtfyClient } from './utils/ntfy';
 
 const App = () => {

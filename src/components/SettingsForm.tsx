@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, TextInput } from 'ink';
+import { Box, Text } from 'ink';
 
 interface SettingsFormProps {
   server: string;
@@ -17,27 +17,19 @@ export const SettingsForm = ({ server, topic, onServerChange, onTopicChange, foc
       Box,
       { marginBottom: 1 },
       React.createElement(Text, null, "ntfy server: "),
-      React.createElement(TextInput, {
-        value: server,
-        onChange: onServerChange,
-        focus: focusedInput === 'server'
-      })
+      React.createElement(Text, { color: focusedInput === 'server' ? 'green' : undefined }, server || '(empty)')
     ),
     React.createElement(
       Box,
       { marginBottom: 1 },
       React.createElement(Text, null, "      topic: "),
-      React.createElement(TextInput, {
-        value: topic,
-        onChange: onTopicChange,
-        focus: focusedInput === 'topic'
-      })
+      React.createElement(Text, { color: focusedInput === 'topic' ? 'green' : undefined }, topic || '(empty)')
     ),
     React.createElement(
       Box,
       { marginTop: 1 },
       React.createElement(Text, { color: "green" }, "         [OK]"),
-      React.createElement(Text, { color: "red", marginLeft: 2 }, "  [Cancel]")
+      React.createElement(Text, { color: "red" }, "  [Cancel]")
     )
   );
 };
