@@ -11,6 +11,7 @@ TUI application for sending notifications to [ntfy.sh](https://ntfy.sh) about pr
 - Terminal-based user interface
 - Command-line interface for automation
 - Automatic process exit after command completion
+- Clean shutdown for both CLI and TUI interfaces
 
 ## Installation
 
