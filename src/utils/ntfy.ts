@@ -28,8 +28,6 @@ export class NtfyClient {
           'Content-Type': 'text/plain'
         }
       });
-      
-      console.log('Message sent successfully!');
     } catch (error) {
       console.error('Failed to send message:', error);
       throw error;

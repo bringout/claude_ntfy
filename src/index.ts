@@ -1,11 +1,20 @@
 #!/usr/bin/env bun
 
+import { readFileSync } from 'fs';
 import { loadSettings, saveSettings } from './utils/settings';
 import type { Settings } from './utils/settings';
 import { NtfyClient } from './utils/ntfy';
 
 async function main() {
   const args = process.argv.slice(2);
+
+  if (args.length > 0 && (args[0] === '--version' || args[0] === '-v')) {
+    const packageJsonPath = `${import.meta.dir}/../package.json`;
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+    console.log(packageJson.version);
+    process.exit(0);
+    return;
+  }
   
   if (args.length === 0) {
     console.log('Usage:');
