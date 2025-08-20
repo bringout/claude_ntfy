@@ -1,6 +1,6 @@
 {
   "name": "hernad@claude-ntfy",
-  "version": "0.5.2",
+  "version": "0.6.2",
   "description": "TUI application for sending notifications to ntfy.sh about project progress",
   "main": "dist/index.js",
   "module": "src/index.ts",
