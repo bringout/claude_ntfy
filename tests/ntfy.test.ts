@@ -7,9 +7,42 @@ describe('NtfyClient', () => {
     expect(client).toBeInstanceOf(NtfyClient);
   });
 
-  test('should use default base URL', () => {
+  test('should send message with correct parameters', async () => {
+    // Mock axios for testing
+    const mockPost = mock(() => Promise.resolve({ data: {} }));
+
+    // Mock settings
+    const mockLoadSettings = mock(() => Promise.resolve({
+      server: 'https://test.example.com',
+      topic: 'test-topic'
+    }));
+
+    // Mock the settings module
+    mock.module('../src/utils/settings', () => ({
+      loadSettings: mockLoadSettings
+    }));
+    
+    // Mock axios
+    mock.module('axios', () => ({
+      default: { post: mockPost },
+      post: mockPost
+    }));
+
     const client = new NtfyClient();
-    // We can't easily test the private property, but we can test that it was created
-    expect(client).toBeDefined();
+    const message = 'Test message';
+    const title = 'Test title';
+    const tags = ['tag1', 'tag2'];
+    
+    await client.sendMessage(message, title, tags);
+    
+    // Verify axios.post was called with correct URL and data
+    expect(mockPost).toHaveBeenCalledWith(
+      'https://test.example.com/test-topic',
+      {
+        message: message,
+        title: title,
+        tags: tags
+      }
+    );
   });
 });

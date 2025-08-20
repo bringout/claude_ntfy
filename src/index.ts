@@ -3,6 +3,7 @@
 import React from 'react';
 import { render } from 'ink';
 import { Menu } from './components/Menu';
+import { NtfyClient } from './utils/ntfy';
 
 const App = () => {
   const menuItems = [

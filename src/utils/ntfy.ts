@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { loadSettings } from './settings';
 
 interface NtfyMessage {
   topic: string;
@@ -9,20 +10,16 @@ interface NtfyMessage {
 }
 
 export class NtfyClient {
-  private baseUrl: string;
-
-  constructor(baseUrl: string = 'https://ntfy.sh') {
-    this.baseUrl = baseUrl;
-  }
-
-  async sendMessage(message: NtfyMessage): Promise<void> {
+  async sendMessage(message: string, title?: string, tags?: string[]): Promise<void> {
     try {
-      await axios.post(`${this.baseUrl}/${message.topic}`, {
-        message: message.message,
-        title: message.title,
-        priority: message.priority,
-        tags: message.tags
+      const settings = await loadSettings();
+      
+      await axios.post(`${settings.server}/${settings.topic}`, {
+        message: message,
+        title: title,
+        tags: tags
       });
+      
       console.log('Message sent successfully!');
     } catch (error) {
       console.error('Failed to send message:', error);
