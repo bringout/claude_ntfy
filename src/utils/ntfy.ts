@@ -1,23 +1,32 @@
 import axios from 'axios';
 import { loadSettings } from './settings';
 
-interface NtfyMessage {
-  topic: string;
-  message: string;
-  title?: string;
-  priority?: number;
-  tags?: string[];
-}
-
 export class NtfyClient {
   async sendMessage(message: string, title?: string, tags?: string[]): Promise<void> {
     try {
       const settings = await loadSettings();
       
-      await axios.post(`${settings.server}/${settings.topic}`, {
-        message: message,
-        title: title,
-        tags: tags
+      // Build URL with query parameters for title and tags
+      let url = `${settings.server}/${settings.topic}`;
+      const queryParams = [];
+      
+      if (title) {
+        queryParams.push(`title=${encodeURIComponent(title)}`);
+      }
+      
+      if (tags && tags.length > 0) {
+        queryParams.push(`tags=${encodeURIComponent(tags.join(','))}`);
+      }
+      
+      if (queryParams.length > 0) {
+        url += `?${queryParams.join('&')}`;
+      }
+      
+      // Send simple text message
+      await axios.post(url, message, {
+        headers: {
+          'Content-Type': 'text/plain'
+        }
       });
       
       console.log('Message sent successfully!');
