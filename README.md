@@ -29,7 +29,7 @@ npm install -g claude-ntfy
 claude-ntfy send "Your message" "Optional title" tag1 tag2
 
 # Example: Send a notification about a feature
-claude-ntfy send "Feature 1247" "Project 2" tag1 tag2
+claude-ntfy send "Working on feature #1247" "Project 2 update" work progress
 
 # View current settings
 claude-ntfy settings
