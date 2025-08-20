@@ -12,6 +12,7 @@ async function main() {
     console.log('  claude-ntfy send <message> [title] [tags...]');
     console.log('  claude-ntfy settings');
     console.log('  claude-ntfy settings set <server> <topic>');
+    process.exit(0);
     return;
   }
   
@@ -24,6 +25,7 @@ async function main() {
     
     if (!message) {
       console.error('Error: Message is required');
+      process.exit(1);
       return;
     }
     
@@ -31,8 +33,10 @@ async function main() {
       const client = new NtfyClient();
       await client.sendMessage(message, title, tags);
       console.log('Message sent successfully!');
+      process.exit(0);
     } catch (error) {
       console.error('Failed to send message:', error);
+      process.exit(1);
     }
   } else if (command === 'settings') {
     if (args[1] === 'set') {
@@ -41,14 +45,17 @@ async function main() {
       
       if (!server || !topic) {
         console.error('Error: Both server and topic are required');
+        process.exit(1);
         return;
       }
       
       try {
         await saveSettings({ server, topic });
         console.log('Settings saved successfully!');
+        process.exit(0);
       } catch (error) {
         console.error('Failed to save settings:', error);
+        process.exit(1);
       }
     } else {
       try {
@@ -56,12 +63,15 @@ async function main() {
         console.log('Current settings:');
         console.log(`  Server: ${settings.server}`);
         console.log(`  Topic: ${settings.topic}`);
+        process.exit(0);
       } catch (error) {
         console.error('Failed to load settings:', error);
+        process.exit(1);
       }
     }
   } else {
     console.error(`Unknown command: ${command}`);
+    process.exit(1);
   }
 }
 
