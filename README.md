@@ -91,3 +91,16 @@ You can modify these settings using the CLI command:
 ```bash
 claude-ntfy settings set <server-url> <topic-name>
 ```
+
+## GitHub Actions
+
+This repository uses GitHub Actions for continuous integration and deployment:
+
+- Tests are automatically run on every push and pull request
+- When code is pushed to the main branch and tests pass, a new version is automatically published to npm
+
+To publish a new version:
+1. Update the version in `package.json`
+2. Run `npm run release` to create a new release
+3. Push the changes and tag to GitHub
+4. GitHub Actions will automatically publish to npm
