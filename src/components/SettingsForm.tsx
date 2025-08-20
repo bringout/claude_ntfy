@@ -6,9 +6,10 @@ interface SettingsFormProps {
   topic: string;
   onServerChange: (value: string) => void;
   onTopicChange: (value: string) => void;
+  focusedInput: 'server' | 'topic';
 }
 
-export const SettingsForm = ({ server, topic, onServerChange, onTopicChange }: SettingsFormProps) => {
+export const SettingsForm = ({ server, topic, onServerChange, onTopicChange, focusedInput }: SettingsFormProps) => {
   return React.createElement(
     Box,
     { flexDirection: "column" },
@@ -18,7 +19,8 @@ export const SettingsForm = ({ server, topic, onServerChange, onTopicChange }: S
       React.createElement(Text, null, "ntfy server: "),
       React.createElement(TextInput, {
         value: server,
-        onChange: onServerChange
+        onChange: onServerChange,
+        focus: focusedInput === 'server'
       })
     ),
     React.createElement(
@@ -27,7 +29,8 @@ export const SettingsForm = ({ server, topic, onServerChange, onTopicChange }: S
       React.createElement(Text, null, "      topic: "),
       React.createElement(TextInput, {
         value: topic,
-        onChange: onTopicChange
+        onChange: onTopicChange,
+        focus: focusedInput === 'topic'
       })
     ),
     React.createElement(
