@@ -1,20 +1,26 @@
 {
   "name": "claude-ntfy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "TUI application for sending notifications to ntfy.sh about project progress",
+  "main": "dist/index.js",
   "module": "src/index.ts",
   "type": "module",
   "bin": {
     "claude-ntfy": "./dist/index.js",
     "claude-ntfy-tui": "./dist/tui.js"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json && node fix-imports.js",
     "start": "bun run src/index.ts",
     "start:tui": "bun run src/tui.tsx",
     "dev": "bun run --watch src/index.ts",
     "dev:tui": "bun run --watch src/tui.tsx",
-    "test": "./test.sh"
+    "test": "./test.sh",
+    "prepublishOnly": "bun run build",
+    "release": "./release.sh"
   },
   "keywords": ["tui", "ntfy", "notifications", "cli"],
   "author": "hernad",
