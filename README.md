@@ -10,6 +10,7 @@ TUI application for sending notifications to [ntfy.sh](https://ntfy.sh) about pr
 - Send "stuck" notifications with appropriate emojis
 - Terminal-based user interface
 - Command-line interface for automation
+- Automatic process exit after command completion
 
 ## Installation
 
