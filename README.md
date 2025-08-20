@@ -1,6 +1,6 @@
 # claude-ntfy
 
-[![npm version](https://img.shields.io/npm/v/claude-ntfy)](https://www.npmjs.com/package/claude-ntfy)
+[![npm version](https://img.shields.io/npm/v/@hernad/claude-ntfy)](https://www.npmjs.com/package/@hernad/claude-ntfy)
 
 TUI application for sending notifications to [ntfy.sh](https://ntfy.sh) about project progress.
 
@@ -17,7 +17,7 @@ TUI application for sending notifications to [ntfy.sh](https://ntfy.sh) about pr
 ## Installation
 
 ```bash
-npm install -g claude-ntfy
+npm install -g @hernad/claude-ntfy
 ```
 
 ## Usage
