@@ -36,6 +36,9 @@ claude-ntfy settings
 
 # Update settings
 claude-ntfy settings set https://ntfy.cloud.out.ba claude
+
+# Get the current version
+claude-ntfy --version
 ```
 
 ### Terminal User Interface (TUI)
