@@ -21,7 +21,6 @@ Be descriptive about your work on console.
 Topic is for every notification is `claude`.
 
 
-
 ## Tech stack
 
 - bun TS/javascript
@@ -66,4 +65,7 @@ That token is needed in github actions for publishing project. Setup github acti
 - add npm badge
 
 
+## Documentation
+
+- API for ntfy: https://docs.ntfy.sh
 

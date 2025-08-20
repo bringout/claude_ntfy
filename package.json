@@ -1,0 +1,31 @@
+{
+  "name": "claude-ntfy",
+  "version": "0.0.1",
+  "description": "TUI application for sending notifications to ntfy.sh about project progress",
+  "module": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "claude-ntfy": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "test": "bun test"
+  },
+  "keywords": ["tui", "ntfy", "notifications", "cli"],
+  "author": "hernad",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/react": "^19.1.10",
+    "axios": "^1.11.0",
+    "ink": "^6.2.1",
+    "react": "^19.1.1"
+  }
+}
