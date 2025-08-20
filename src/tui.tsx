@@ -71,6 +71,10 @@ const App = () => {
 
   // Exit the application if requested
   if (exit) {
+    // Schedule exit after a short delay to allow the message to be displayed
+    setTimeout(() => {
+      process.exit(0);
+    }, 100);
     return React.createElement(Text, null, "Goodbye!");
   }
 
@@ -95,7 +99,7 @@ const App = () => {
       React.createElement(
         Text,
         { 
-          key: index,
+          key: `menu-${index}`,
           color: index === menuIndex ? 'green' : undefined
         },
         `${index === menuIndex ? '> ' : '  '}${item}`
@@ -112,4 +116,16 @@ const App = () => {
   );
 };
 
-render(React.createElement(App));
+// Render the app and get the unmount function
+const { unmount } = render(React.createElement(App));
+
+// Also listen for process exit events to ensure clean shutdown
+process.on('SIGINT', () => {
+  unmount();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  unmount();
+  process.exit(0);
+});
