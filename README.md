@@ -103,4 +103,8 @@ To publish a new version:
 1. Update the version in `package.json`
 2. Run `npm run release` to create a new release
 3. Push the changes and tag to GitHub
-4. GitHub Actions will automatically publish to npmPublished version 0.1.0
+4. GitHub Actions will automatically publish to npm
+
+## Published Versions
+
+- v0.2.0 - Initial public release
