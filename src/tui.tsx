@@ -45,7 +45,7 @@ const App = () => {
       await sendNotification('PR Merged', 'Pull request merged successfully', ['git', 'merged']);
     } else if (menuIndex === 2) {
       // Send Stuck Notification
-      await sendNotification('Stuck', 'I am stuck with this feature', ['stuck', 'help']);
+      await sendNotification('Stuck 😕', 'I am stuck with this feature 😕', ['stuck', 'help']);
     } else if (menuIndex === 3) {
       // View Settings
       setMessage('Viewing settings...');
