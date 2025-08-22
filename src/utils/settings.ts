@@ -1,5 +1,5 @@
 import { mkdir, writeFile, readFile } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { homedir } from 'os';
 
 export interface Settings {
@@ -12,11 +12,14 @@ const DEFAULT_SETTINGS: Settings = {
   topic: 'claude'
 };
 
-const SETTINGS_FILE = join(homedir(), '.claude-ntfy', 'settings.json');
+export function getSettingsFile(): string {
+  const home = process.env.HOME || homedir();
+  return join(home, '.claude-ntfy', 'settings.json');
+}
 
 export async function loadSettings(): Promise<Settings> {
   try {
-    const data = await readFile(SETTINGS_FILE, 'utf-8');
+    const data = await readFile(getSettingsFile(), 'utf-8');
     return { ...DEFAULT_SETTINGS, ...JSON.parse(data) };
   } catch (error) {
     // If file doesn't exist or is invalid, return defaults
@@ -26,10 +29,11 @@ export async function loadSettings(): Promise<Settings> {
 
 export async function saveSettings(settings: Settings): Promise<void> {
   try {
+    const file = getSettingsFile();
     // Ensure directory exists
-    await mkdir(join(homedir(), '.claude-ntfy'), { recursive: true });
+    await mkdir(dirname(file), { recursive: true });
     // Write settings to file
-    await writeFile(SETTINGS_FILE, JSON.stringify(settings, null, 2));
+    await writeFile(file, JSON.stringify(settings, null, 2));
   } catch (error) {
     console.error('Failed to save settings:', error);
     throw error;
