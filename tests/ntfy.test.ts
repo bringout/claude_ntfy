@@ -47,4 +47,36 @@ describe('NtfyClient', () => {
       }
     );
   });
+
+  test('should handle server URLs with trailing slash', async () => {
+    mockPost.mockReset();
+    const mockLoadSettings = mock(() => Promise.resolve({
+      server: 'https://test.example.com/',
+      topic: 'test-topic'
+    }));
+
+    mock.module('../src/utils/settings', () => ({
+      loadSettings: mockLoadSettings
+    }));
+
+    mock.module('axios', () => ({
+      default: { post: mockPost },
+      post: mockPost
+    }));
+
+    const client = new NtfyClient();
+    const message = 'Another test';
+
+    await client.sendMessage(message);
+
+    expect(mockPost).toHaveBeenCalledWith(
+      'https://test.example.com/test-topic',
+      message,
+      {
+        headers: {
+          'Content-Type': 'text/plain'
+        }
+      }
+    );
+  });
 });
